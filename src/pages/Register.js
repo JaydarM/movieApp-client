@@ -3,10 +3,12 @@ import "notyf/notyf.min.css";
 
 import { useState, useEffect } from "react";
 import { Form, Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 function Register() {
 
 	const notyf = new Notyf();
+	const navigate = useNavigate();
 
 	// Hooks
 	const [email, setEmail] = useState("");
@@ -45,6 +47,7 @@ function Register() {
 				setConfirmPassword("");
 
 				notyf.success("Registered Successfully");
+				navigate("/login");
 			} else {
 				notyf.error("Something went wrong");
 			}

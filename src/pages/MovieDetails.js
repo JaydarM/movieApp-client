@@ -24,8 +24,11 @@ function MovieDetails() {
 
 	useEffect(() => {
 		fetchMovieDetails();
-		getComments();
 	}, [movieId])
+
+	useEffect(() => {
+		getComments();
+	}, [comments])
 
 	function fetchMovieDetails() {
 		fetch(`https://movieapp-api-lms1.onrender.com/movies/getMovie/${movieId}`, {
@@ -37,6 +40,7 @@ function MovieDetails() {
 		.then(res => res.json())
 		.then(data => {
 			if (data !== undefined) {
+				console.log(data);
 				setTitle(data.title);
 				setDirector(data.director);
 				setYear(data.year);
@@ -50,6 +54,7 @@ function MovieDetails() {
 	}
 
 	function getComments() {
+		console.log(comments);
 		if (comments.length > 0) {
 			setHasComments(true);
 
